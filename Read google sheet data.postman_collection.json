@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "35b7531c-7065-49fd-a635-b31327f46f5b",
+		"name": "Read google sheet data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23547743"
+	},
+	"item": [
+		{
+			"name": "receive accesstoken",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "LinkedIn-Version",
+						"value": "202210",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserId\":\"{UserId}\",\r\n    \"ClientId\":\"{ClientId}\",\r\n    \"ClientSecrert\":\"{ClientSecrert}\",\r\n    \"Scopes\":[\"https://www.googleapis.com/auth/spreadsheets.readonly\"]\r\n}"
+				},
+				"url": "https://localhost:44340/api/GoogleSheet"
+			},
+			"response": []
+		},
+		{
+			"name": "read sheet data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "LinkedIn-Version",
+						"value": "202210",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44340/api/GoogleSheet?sheetId={google_sheet_id}&range={sheet_name}&accessToken={access_token_from_previous_step}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44340",
+					"path": [
+						"api",
+						"GoogleSheet"
+					],
+					"query": [
+						{
+							"key": "sheetId",
+							"value": "{google_sheet_id}"
+						},
+						{
+							"key": "range",
+							"value": "{sheet_name}"
+						},
+						{
+							"key": "accessToken",
+							"value": "{access_token_from_previous_step}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
